@@ -1,0 +1,4 @@
+repository "Mario 2D@vaimar@cloud"
+  path "/"
+    br "/main"
+    co "/main"
