@@ -1,3 +1,5 @@
+// Singleton
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +14,13 @@ public class GameManager : MonoBehaviour
 
     public UnitHealth _playerHealth = new UnitHealth(5, 5);
 
+
+    void Start()
+    {
+        _playerHealth.Health = startingHealth;
+        _playerHealth.MaxHealth = maxHealth;
+    }
+
     void Awake()
     {
         if (gameManager != null && gameManager != this)
@@ -22,8 +31,5 @@ public class GameManager : MonoBehaviour
         {
             gameManager = this;
         }
-
-        _playerHealth.Health = startingHealth;
-        _playerHealth.MaxHealth = maxHealth;
     }
 }

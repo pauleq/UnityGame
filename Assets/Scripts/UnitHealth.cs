@@ -1,3 +1,5 @@
+// Can be used for many things, not just the player
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,9 +55,9 @@ public class UnitHealth
         {
             _currentHealth += healAmount;
         }
-        if (_currentHealth > _currentMaxHealth) 
-        { 
-            _currentHealth-= _currentMaxHealth;
+        if (_currentHealth > _currentMaxHealth)
+        {
+            _currentHealth -= _currentMaxHealth;
         }
     }
 }
