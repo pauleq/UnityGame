@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public GameObject TempHealthCounter;
     
     void Start()
     {
-        TempHealthCounter.GetComponent<TextMeshPro>().SetText("lol");
+
     }
 
     void Update()
