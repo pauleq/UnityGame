@@ -17,8 +17,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        _playerHealth.Health = startingHealth;
-        _playerHealth.MaxHealth = maxHealth;
+
     }
 
     void Awake()
@@ -31,5 +30,8 @@ public class GameManager : MonoBehaviour
         {
             gameManager = this;
         }
+
+        _playerHealth.Health = startingHealth;
+        _playerHealth.MaxHealth = maxHealth;
     }
 }
