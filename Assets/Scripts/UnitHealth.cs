@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UnitHealth
 {
@@ -48,6 +49,11 @@ public class UnitHealth
         { 
             _currentHealth -= damageAmount;
         }
+
+        // This is called even when the unit isn't the player. Shouldn't cause any bugs, since
+        // it will just show the same health amount as already shown, but still kinda annoyingly
+        // unoptimised
+        UIManager.uiManager.updateHealth(); // Update UI
     }
     public void HealUnit(int healAmount = 1)
     {
@@ -59,5 +65,10 @@ public class UnitHealth
         {
             _currentHealth -= _currentMaxHealth;
         }
+
+        // This is called even when the unit isn't the player. Shouldn't cause any bugs, since
+        // it will just show the same health amount as already shown, but still kinda annoyingly
+        // unoptimised
+        UIManager.uiManager.updateHealth(); // Update UI
     }
 }
