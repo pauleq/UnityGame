@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N)) 
@@ -23,16 +18,18 @@ public class PlayerBehaviour : MonoBehaviour
             PlayerHeal();
             //Debug.Log(GameManager.gameManager._playerHealth.Health);
         }
+        if (GameManager.gameManager._playerHealth.Health <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private void PlayerTakeDamage(int damage = 1)
     {
         GameManager.gameManager._playerHealth.DamageUnit(damage);
-        UIManager.uiManager.updateHealth(); // Update UI
     }
     private void PlayerHeal(int healing = 1)
     {
         GameManager.gameManager._playerHealth.HealUnit(healing);
-        UIManager.uiManager.updateHealth(); // Update UI
     }
 }
