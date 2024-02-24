@@ -22,7 +22,7 @@ public class GroundDetection : MonoBehaviour
     void UpdateLastContactPosition(Collision2D collision)
     {
         // Check if the object colliding with the player is ground
-        if (collision.gameObject.CompareTag("Terrain"))
+        if (collision.gameObject.CompareTag("Terrain") || collision.gameObject.CompareTag("Obstacle"))
         {
             // Check if the collision contact normal is pointing upwards
             foreach (ContactPoint2D contactPoint in collision.contacts)
