@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int maxHealth = 5;
 
     public UnitHealth _playerHealth = new UnitHealth(5, 5);
+    public ExpPointCounter _playerExpPoints = new ExpPointCounter();
 
 
     void Start()

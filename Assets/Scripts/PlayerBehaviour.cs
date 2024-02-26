@@ -11,12 +11,18 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N)) 
         { 
             PlayerTakeDamage();
-            //Debug.Log(GameManager.gameManager._playerHealth.Health);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
             PlayerHeal();
-            //Debug.Log(GameManager.gameManager._playerHealth.Health);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            PlayerAddExp(1000);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PlayerRemoveExp(700);
         }
         if (GameManager.gameManager._playerHealth.Health <= 0)
         {
@@ -31,5 +37,13 @@ public class PlayerBehaviour : MonoBehaviour
     private void PlayerHeal(int healing = 1)
     {
         GameManager.gameManager._playerHealth.HealUnit(healing);
+    }
+    private void PlayerRemoveExp(int exp)
+    {
+        GameManager.gameManager._playerExpPoints.RemoveExpPoints(exp);
+    }
+    private void PlayerAddExp(int exp)
+    {
+        GameManager.gameManager._playerExpPoints.AddExpPoints(exp);
     }
 }
