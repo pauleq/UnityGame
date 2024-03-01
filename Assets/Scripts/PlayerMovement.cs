@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     private enum MovementState { idle, running, jumping, falling }
 
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource groundTouchSoundEffect;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -36,9 +39,19 @@ public class PlayerMovement : MonoBehaviour
 
         // Player jumps
         if (Input.GetButtonDown("Jump") && isGrounded())
+        {
+            jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+            
 
         updateMovementState();
+    }
+
+    // Player lands on ground
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        groundTouchSoundEffect.Play();
     }
 
     // Updates player's movement state
