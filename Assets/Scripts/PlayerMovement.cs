@@ -83,4 +83,19 @@ public class PlayerMovement : MonoBehaviour
 
     // Does player stand on the ground?
     private bool isGrounded() { return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround); }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if(collision.tag == "Powerups")
+        {
+            Destroy(collision.gameObject);
+            if (collision.gameObject.name == "JumpBoost")
+                jumpForce = 15f;
+        }
+	}
+
+    public void ResetDamaged()
+    {
+        jumpForce = 10f;
+    }
 }
