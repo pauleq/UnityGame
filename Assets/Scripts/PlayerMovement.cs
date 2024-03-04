@@ -91,11 +91,14 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
             if (collision.gameObject.name == "JumpBoost")
                 jumpForce = 15f;
-        }
+			else if (collision.gameObject.name == "SpeedBoost")
+				moveSpeed = 11f;
+		}
 	}
 
     public void ResetDamaged()
     {
         jumpForce = 10f;
+        moveSpeed = 7f;
     }
 }
