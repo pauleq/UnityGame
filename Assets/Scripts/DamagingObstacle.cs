@@ -28,18 +28,12 @@ public class DamagingObstacle : MonoBehaviour
     {
         if (coll.CompareTag("Player"))
         {
-            GameManager.gameManager._playerHealth.DamageUnit(damageAmount);
+            GameManager.gameManager.DamagePlayer(damageAmount);
 
             if (destroyOnHit)
             {
                 Destroy(gameObject);
             }
-
-			PlayerMovement playerMovement = coll.gameObject.GetComponent<PlayerMovement>();
-			if (playerMovement != null)
-			{
-				playerMovement.ResetDamaged();
-			}
 
 		}
 	}

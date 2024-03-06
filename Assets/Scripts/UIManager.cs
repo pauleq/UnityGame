@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public static UIManager uiManager { get; private set; }
 
     [SerializeField] private TextMeshProUGUI _healthText;
+    [SerializeField] private TextMeshProUGUI _uiText;
 
     void Start()
     {
@@ -20,6 +21,11 @@ public class UIManager : MonoBehaviour
     public void updateHealth()
     {
         _healthText.text = "health: " + GameManager.gameManager._playerHealth.Health;
+    }
+
+    public void updateExpPoints()
+    {
+        _uiText.text = "exp: " + GameManager.gameManager._playerExpPoints.ExpPoints;
     }
 
     void Awake()
