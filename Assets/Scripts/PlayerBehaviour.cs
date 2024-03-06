@@ -32,18 +32,18 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void PlayerTakeDamage(int damage = 1)
     {
-        GameManager.gameManager._playerHealth.DamageUnit(damage);
+        GameManager.gameManager.DamagePlayer(damage);
     }
     private void PlayerHeal(int healing = 1)
     {
-        GameManager.gameManager._playerHealth.HealUnit(healing);
+        GameManager.gameManager.HealPlayer(healing);
     }
     private void PlayerRemoveExp(int exp)
     {
-        GameManager.gameManager._playerExpPoints.RemoveExpPoints(exp);
+        GameManager.gameManager.RemoveExpPlayer(exp);
     }
     private void PlayerAddExp(int exp)
     {
-        GameManager.gameManager._playerExpPoints.AddExpPoints(exp);
+        GameManager.gameManager.GiveExpPlayer(exp);
     }
 }

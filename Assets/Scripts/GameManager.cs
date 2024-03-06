@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public UnitHealth _playerHealth = new UnitHealth(5, 5);
     public ExpPointCounter _playerExpPoints = new ExpPointCounter();
 
+    [SerializeField] private GameObject Player;
+
 
     void Start()
     {
@@ -34,5 +36,27 @@ public class GameManager : MonoBehaviour
 
         _playerHealth.Health = startingHealth;
         _playerHealth.MaxHealth = maxHealth;
+    }
+
+    public void DamagePlayer(int damageAmount)
+    {
+        _playerHealth.DamageUnit(damageAmount);
+        PlayerMovement playerMovement = Player.GetComponent<PlayerMovement>();
+        if (playerMovement != null)
+        {
+            playerMovement.ResetDamaged();
+        }
+    }
+    public void HealPlayer(int healAmount)
+    {
+        _playerHealth.HealUnit(healAmount);
+    }
+    public void GiveExpPlayer(int expAmount)
+    {
+        _playerExpPoints.AddExpPoints(expAmount);
+    }
+    public void RemoveExpPlayer(int expAmount)
+    {
+        _playerExpPoints.RemoveExpPoints(expAmount);
     }
 }
