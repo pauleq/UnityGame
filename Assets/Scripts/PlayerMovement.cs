@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     private enum MovementState { idle, running, jumping, falling }
 
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource groundTouchSoundEffect;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -36,9 +39,19 @@ public class PlayerMovement : MonoBehaviour
 
         // Player jumps
         if (Input.GetButtonDown("Jump") && isGrounded())
+        {
+            jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+            
 
         updateMovementState();
+    }
+
+    // Player lands on ground
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        groundTouchSoundEffect.Play();
     }
 
     // Updates player's movement state
@@ -70,4 +83,22 @@ public class PlayerMovement : MonoBehaviour
 
     // Does player stand on the ground?
     private bool isGrounded() { return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround); }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if(collision.tag == "Powerups")
+        {
+            Destroy(collision.gameObject);
+            if (collision.gameObject.name == "JumpBoost")
+                jumpForce = 15f;
+			else if (collision.gameObject.name == "SpeedBoost")
+				moveSpeed = 11f;
+		}
+	}
+
+    public void ResetDamaged()
+    {
+        jumpForce = 10f;
+        moveSpeed = 7f;
+    }
 }

@@ -34,6 +34,13 @@ public class DamagingObstacle : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-        }
-    }
+
+			PlayerMovement playerMovement = coll.gameObject.GetComponent<PlayerMovement>();
+			if (playerMovement != null)
+			{
+				playerMovement.ResetDamaged();
+			}
+
+		}
+	}
 }
