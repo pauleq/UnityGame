@@ -12,12 +12,12 @@ public class GroundDetection : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         UpdateLastContactPosition(collision);
-    }
+	}
 
     void OnCollisionStay2D(Collision2D collision)
     {
         UpdateLastContactPosition(collision);
-    }
+	}
 
     void UpdateLastContactPosition(Collision2D collision)
     {

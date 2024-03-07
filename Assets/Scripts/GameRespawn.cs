@@ -28,8 +28,12 @@ public class GameRespawn : MonoBehaviour
 
         if (distance >= threshold)
         {
-            // Respawn the player at the initial position
-            Vector2 respawnPosition = groundDetection.lastContactPosition;
+			// Calling damage function to damage the player when he falls
+			// out of the world bounds 
+			GameManager.gameManager.DamagePlayer(1);
+
+			// Respawn the player at the initial position
+			Vector2 respawnPosition = groundDetection.lastContactPosition;
             respawnPosition.y = groundDetection.lastContactPosition.y + 1;
             transform.position = respawnPosition;
             Debug.Log("Player teleported to: " + groundDetection.lastContactPosition);
