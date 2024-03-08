@@ -5,20 +5,25 @@ using UnityEngine;
 public class PauseGame : MonoBehaviour
 {
     [SerializeField] private AudioSource backgroundMusic;
+    public PauseMenu pauseMenu;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Pause();
+            Pause(); // pause game (for testing)
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            Continue();
+            Continue(); // continue game (for testing)
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu.TurnPanelOn(); // turn pause GUI on
         }
     }
 
-    private void Pause()
+    public void Pause()
     {
         Time.timeScale = 0f;
 
@@ -42,7 +47,7 @@ public class PauseGame : MonoBehaviour
         Debug.Log("Game paused.");
     }
 
-    private void Continue()
+    public void Continue()
     {
         Time.timeScale = 1f;
 
