@@ -45,9 +45,10 @@ public class UnitHealth
     // Methods
     public void DamageUnit(int damageAmount = 1)
     {
-        if (_currentHealth > 0) 
-        { 
-            _currentHealth -= damageAmount;
+        _currentHealth -= damageAmount;
+        if (_currentHealth < 0)
+        {
+            _currentHealth = 0;
         }
 
         // This is called even when the unit isn't the player. Shouldn't cause any bugs, since
