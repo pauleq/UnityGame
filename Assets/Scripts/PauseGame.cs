@@ -21,7 +21,19 @@ public class PauseGame : MonoBehaviour
     private void Pause()
     {
         Time.timeScale = 0f;
-        
+
+        MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
+
+        // Disable all the scripts while game is paused,
+        // so no attributes are being changed
+        foreach (MonoBehaviour script in scripts)
+        {
+            if (script != this)
+            {
+                script.enabled = false;
+            }
+        }
+
         if (backgroundMusic.isPlaying)
         {
             backgroundMusic.Pause();
@@ -37,6 +49,17 @@ public class PauseGame : MonoBehaviour
         if (!backgroundMusic.isPlaying)
         {
             backgroundMusic.Play();
+        }
+
+        MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
+
+        // Re-enable all scripts
+        foreach (MonoBehaviour script in scripts)
+        {
+            if (script != this)
+            {
+                script.enabled = true;
+            }
         }
 
         Debug.Log("Game continuing.");
