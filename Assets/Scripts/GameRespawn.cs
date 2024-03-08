@@ -7,7 +7,7 @@ public class GameRespawn : MonoBehaviour
     public GroundDetection groundDetection;
 
     [SerializeField]
-    public float threshold;
+    private float threshold;
 
     // Start is called before the first frame update
     void Start()
