@@ -93,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
                 jumpForce = 15f;
 			else if (collision.gameObject.name == "SpeedBoost")
 				moveSpeed = 11f;
+            else if (collision.gameObject.name == "ExtraHeart")
+                GameManager.gameManager.HealPlayer(1);
 		}
 	}
 
