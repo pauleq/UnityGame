@@ -24,7 +24,7 @@ public class GameRespawn : MonoBehaviour
 
         float distance = Vector2.Distance(currentPosition, lastContactPosition);
 
-        Debug.Log("Distance from last contact position: " + distance);
+        //Debug.Log("Distance from last contact position: " + distance);
 
         if (distance >= threshold)
         {

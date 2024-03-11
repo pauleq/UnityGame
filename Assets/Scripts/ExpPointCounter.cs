@@ -32,9 +32,9 @@ public class ExpPointCounter
     public void AddExpPoints(int expAmount)
     {
         _currentExpPoints += expAmount;
-        if ( _currentExpPoints > 99999 ) 
+        if ( _currentExpPoints > 999999 ) 
         {
-            _currentExpPoints = 99999; // Absolute limit that shouldn't even be possible to reach
+            _currentExpPoints = 999999; // Absolute limit that shouldn't even be possible to reach
         }
 
         UIManager.uiManager.updateExpPoints(); // Update exp points UI
