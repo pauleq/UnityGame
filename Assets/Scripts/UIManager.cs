@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
     public void updateExpPoints()
     {
-        _uiText.text = "exp: " + GameManager.gameManager._playerExpPoints.ExpPoints;
+        _uiText.text = "" + GameManager.gameManager._playerExpPoints.ExpPoints.ToString("000000");
     }
 
     public void DrawHeart (int hearts, int maxHearts)
