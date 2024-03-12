@@ -12,13 +12,13 @@ public class DamagingObstacle : MonoBehaviour
     public bool destroyOnHit = false; // Destroy object after hurting player once
 
     // If isTrigger is false
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         TouchConsequences(collision.collider);
     }
 
     // If isTrigger is true
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
         TouchConsequences(collider);
     }
@@ -26,7 +26,7 @@ public class DamagingObstacle : MonoBehaviour
     // Decides what happens when object is touched
     void TouchConsequences(Collider2D coll)
     {
-        if (coll.CompareTag("Player"))
+        if (coll.CompareTag("Player") && !GameManager.gameManager.isInvincible)
         {
             GameManager.gameManager.DamagePlayer(damageAmount);
 
