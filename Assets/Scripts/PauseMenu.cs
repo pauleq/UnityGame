@@ -26,4 +26,9 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(false); // hide GUI window
         SceneManager.LoadScene(0); // Main menu scene
     }
+
+    public void TurnPanelOff()
+    {
+        pausePanel.SetActive(false);
+    }
 }

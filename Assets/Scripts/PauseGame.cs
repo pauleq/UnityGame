@@ -67,6 +67,7 @@ public class PauseGame : MonoBehaviour
             }
         }
 
+        pauseMenu.TurnPanelOff();
         Debug.Log("Game continuing.");
     }
 }
