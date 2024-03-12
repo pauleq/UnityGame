@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource jumpSoundEffect;
     [SerializeField] private AudioSource groundTouchSoundEffect;
 
+    [SerializeField] private float normalTreshold = 0.9f;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -51,7 +53,20 @@ public class PlayerMovement : MonoBehaviour
     // Player lands on ground
     void OnCollisionEnter2D(Collision2D collision)
     {
-        groundTouchSoundEffect.Play();
+        // Check if the object colliding with the player is ground
+        if (collision.gameObject.CompareTag("Terrain") || collision.gameObject.CompareTag("Obstacle"))
+        {
+            // Check if the collision contact normal is pointing upwards
+            foreach (ContactPoint2D contactPoint in collision.contacts)
+            {
+                if (contactPoint.normal.y > normalTreshold) // Adjust this threshold as needed
+                {
+                    // Save the last contact position
+                    groundTouchSoundEffect.Play();
+                    break; // Exit loop after finding the first suitable contact point
+                }
+            }
+        }
     }
 
     // Updates player's movement state
