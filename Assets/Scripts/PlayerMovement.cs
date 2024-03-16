@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float normalTreshold = 0.9f;
 
+    public bool canEnd = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -31,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-    }
+
+	}
 
     // Update is called once per frame
     private void Update()
@@ -111,9 +116,16 @@ public class PlayerMovement : MonoBehaviour
             else if (collision.gameObject.name == "ExtraHeart")
                 GameManager.gameManager.HealPlayer(1);
 		}
+        if(collision.tag == "LevelEnd")
+        {
+			LevelChange levelChangeScript = FindObjectOfType<LevelChange>();
+			Destroy(collision.gameObject);
+			levelChangeScript.LevelEndPickedUp();
+		}
+
 	}
 
-    public void ResetDamaged()
+	public void ResetDamaged()
     {
         jumpForce = 10f;
         moveSpeed = 7f;

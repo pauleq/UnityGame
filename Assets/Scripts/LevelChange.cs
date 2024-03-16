@@ -1,22 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class LevelChange : MonoBehaviour
 {
+    public Image Image;
+    public bool canEnd = false;
     private void Start()
     {
-        
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
+        Image.enabled = false;
+	}
+
+	public void LevelEndPickedUp()
+	{
+		canEnd = true;
+        Image.enabled = true;
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
+		if (collision.CompareTag("EndOfLevel") && canEnd)
         {
             CompleteLevel();
         }
-    }
-    private void CompleteLevel()
+	}
+
+	private void CompleteLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
