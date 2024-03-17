@@ -10,6 +10,7 @@ TagManager:
   - LevelEnd
   - A
   - EndOfLevel
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 10f;
 
-    private enum MovementState { idle, running, jumping, falling }
+    private enum MovementState { idle, running, jumping, falling}
 
     [SerializeField] private AudioSource jumpSoundEffect;
     [SerializeField] private AudioSource groundTouchSoundEffect;
@@ -28,8 +28,16 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canEnd = false;
 
-    // Start is called before the first frame update
-    private void Start()
+	private MovementState state;
+
+	private bool isKnockedBack = false;
+
+	[SerializeField] private float knockbackForce = 15f; 
+	[SerializeField] private float knockbackDuration = 0.2f;
+
+
+	// Start is called before the first frame update
+	private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
@@ -41,18 +49,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
-        // Player jumps
-        if (Input.GetButtonDown("Jump") && isGrounded())
+        if (!isKnockedBack)
         {
-            jumpSoundEffect.Play();
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
-            
 
-        updateMovementState();
+            dirX = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+
+            // Player jumps
+            if (Input.GetButtonDown("Jump") && isGrounded())
+            {
+                jumpSoundEffect.Play();
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
+
+
+            updateMovementState();
+        }
+        
+        
     }
 
     // Player lands on ground
@@ -72,12 +87,32 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+        if(collision.gameObject.tag == "Enemy")
+        {
+            if (state == MovementState.falling)
+            {
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                GameManager.gameManager.DamagePlayer(1);
+
+				Vector2 knockbackDirection = transform.position - collision.transform.position;
+				knockbackDirection.Normalize();
+				rb.velocity = new Vector2(knockbackDirection.x * knockbackForce, rb.velocity.y);
+
+				isKnockedBack = true;
+				Invoke(nameof(ResetKnockback), knockbackDuration);
+			}
+			
+		}
     }
 
     // Updates player's movement state
     private void updateMovementState()
     {
-        MovementState state;
+        
 
         // Does the player run?
         if (dirX > 0f) // running to the right (->)
@@ -129,5 +164,10 @@ public class PlayerMovement : MonoBehaviour
     {
         jumpForce = 10f;
         moveSpeed = 7f;
-    }
+	}
+
+	private void ResetKnockback()
+	{
+		isKnockedBack = false;
+	}
 }
