@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class GameManager : MonoBehaviour
     [Header ("Health")]
     public int startingHealth = 5;
     public int maxHealth = 5;
+    private bool isdead=false;
+
+    public GameObject GameoverUI;
 
     [Header("iFrames")]
     public bool isInvincible = false;
@@ -55,7 +59,12 @@ public class GameManager : MonoBehaviour
         {
             playerMovement.ResetDamaged();
         }
-
+        if (_playerHealth.Health <= 0 && !isdead) 
+        {
+            isdead = true;
+            Player.SetActive(false);
+            gameOver();
+        }
         StartCoroutine(Invulnerability());
     }
     public void HealPlayer(int healAmount)
@@ -84,5 +93,13 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
         }
         isInvincible = false;
+    }
+    public void gameOver()
+    {
+        GameoverUI.SetActive(true);
+    }
+    public void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
