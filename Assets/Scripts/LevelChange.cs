@@ -9,6 +9,8 @@ public class LevelChange : MonoBehaviour
 {
     public Image Image;
     public bool canEnd = false;
+
+
     private void Start()
     {
         Image.enabled = false;
@@ -24,12 +26,16 @@ public class LevelChange : MonoBehaviour
     {
 		if (collision.CompareTag("EndOfLevel") && canEnd)
         {
-            CompleteLevel();
-        }
+			CompleteLevel();
+			Debug.Log("AAAAA");
+		}
+
 	}
 
 	private void CompleteLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+
 }

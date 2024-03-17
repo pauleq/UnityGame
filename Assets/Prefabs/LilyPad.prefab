@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4496141858855078982}
   - component: {fileID: 1026206932798338844}
-  - component: {fileID: 4432280700520256602}
   - component: {fileID: 4253400284472793454}
   m_Layer: 0
   m_Name: LilyPad
@@ -86,19 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4432280700520256602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8440280675602270168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f0aa8efa34c4ca4d9e93144ebf7e4c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canEnd: 0
 --- !u!58 &4253400284472793454
 CircleCollider2D:
   m_ObjectHideFlags: 0

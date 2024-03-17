@@ -25,8 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float normalTreshold = 0.9f;
 
-    public bool canEnd = false;
-
     // Start is called before the first frame update
     private void Start()
     {
@@ -118,8 +116,9 @@ public class PlayerMovement : MonoBehaviour
         if(collision.tag == "LevelEnd")
         {
 			LevelChange levelChangeScript = FindObjectOfType<LevelChange>();
-			Destroy(collision.gameObject);
 			levelChangeScript.LevelEndPickedUp();
+			Destroy(collision.gameObject);
+			
 		}
 
 	}

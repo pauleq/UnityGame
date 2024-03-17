@@ -5,7 +5,6 @@ using UnityEngine;
 public class CollectableObject : MonoBehaviour
 {
     public int expRewardAmount = 100;
-    public bool levelEnd = false;
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
