@@ -1,16 +1,4 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
@@ -26,11 +14,7 @@ public class GameHandler_ChatBubble : MonoBehaviour {
             npcIndex = (npcIndex + 1) % npcTransformArray.Length;
             string message = GetRandomMessage();
 
-            ChatBubble.IconType[] iconArray = 
-                new ChatBubble.IconType[] { ChatBubble.IconType.Happy, ChatBubble.IconType.Neutral, ChatBubble.IconType.Angry };
-            ChatBubble.IconType icon = iconArray[Random.Range(0, iconArray.Length)];
-
-            ChatBubble.Create(npcTransform, new Vector3(0.5f, 0.5f), icon, message);
+            ChatBubble.Create(npcTransform, new Vector3(0.5f, 0.5f), message);
             
         }, 10.0f);
     }
