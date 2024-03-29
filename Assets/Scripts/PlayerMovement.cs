@@ -17,6 +17,12 @@ public class PlayerMovement : MonoBehaviour
     private float dirX = 0f;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 10f;
+    private float moveMod = 0f;
+    private float jumpMod = 0f;
+
+    private float jumpTimeCounter;
+    public float jumpTime;
+    private bool isJumping;
 
     private enum MovementState { idle, running, jumping, falling}
 
@@ -53,15 +59,34 @@ public class PlayerMovement : MonoBehaviour
         {
 
             dirX = Input.GetAxisRaw("Horizontal");
-            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(dirX * (moveSpeed + moveMod), rb.velocity.y);
 
             // Player jumps
             if (Input.GetButtonDown("Jump") && isGrounded())
             {
+                isJumping = true;
+                jumpTimeCounter = jumpTime;
                 jumpSoundEffect.Play();
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce + jumpMod);
             }
 
+            if (Input.GetButton("Jump") && isJumping == true)
+            {
+                if (jumpTimeCounter > 0)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce + jumpMod);
+                    jumpTimeCounter -= Time.deltaTime;
+                } 
+                else
+                {
+                    isJumping = false;
+                }
+            }
+
+            if (Input.GetButtonUp("Jump"))
+            {
+                isJumping = false;
+            }
 
             updateMovementState();
         }
@@ -144,9 +169,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(collision.gameObject);
             if (collision.gameObject.name == "JumpBoost")
-                jumpForce = 15f;
+                jumpMod = 5f;
 			else if (collision.gameObject.name == "SpeedBoost")
-				moveSpeed = 11f;
+				moveMod = 4f;
             else if (collision.gameObject.name == "ExtraHeart")
                 GameManager.gameManager.HealPlayer(1);
 		}
@@ -162,8 +187,8 @@ public class PlayerMovement : MonoBehaviour
 
 	public void ResetDamaged()
     {
-        jumpForce = 10f;
-        moveSpeed = 7f;
+        jumpMod = 0f;
+        moveMod = 0f;
 	}
 
 	private void ResetKnockback()
