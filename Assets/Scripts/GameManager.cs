@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     public int maxHealth = 5;
     private bool isdead=false;
 
-    public GameObject GameoverUI;
 
     [Header("iFrames")]
     public bool isInvincible = false;
@@ -26,6 +25,7 @@ public class GameManager : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] private GameObject Player;
 
+    public GameObject GameoverUI;
     public UnitHealth _playerHealth = new UnitHealth(5, 5);
     public ExpPointCounter _playerExpPoints = new ExpPointCounter();
 
