@@ -14,7 +14,7 @@ public class LevelChange : MonoBehaviour
     private void Start()
     {
         Image.enabled = false;
-	}
+    }
 
 	public void LevelEndPickedUp()
 	{
@@ -27,15 +27,17 @@ public class LevelChange : MonoBehaviour
 		if (collision.CompareTag("EndOfLevel") && canEnd)
         {
 			CompleteLevel();
-			Debug.Log("AAAAA");
+			Debug.Log("Level Completed!");
 		}
 
 	}
 
-	private void CompleteLevel()
+    private void CompleteLevel()
     {
+        GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex-1, GameManager.gameManager._playerExpPoints.ExpPoints);
+        SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
 
 }
