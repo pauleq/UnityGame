@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     [Header("GameObjects")]
     [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject PCamera;
 
     public GameObject GameoverUI;
     public UnitHealth _playerHealth = new UnitHealth(5, 5);
@@ -62,10 +63,17 @@ public class GameManager : MonoBehaviour
         if (_playerHealth.Health <= 0 && !isdead)
         {
             isdead = true;
-            Player.SetActive(false);
-            gameOver();
+            PCamera.GetComponent<CameraController>().followingPlayer = false;
+            Player.GetComponent<PlayerMovement>().lockMovement = true;
+            Player.GetComponent<SpriteRenderer>().sortingOrder = 11;
+            Player.transform.Rotate(new Vector3(0, 0, 180));
+            spriteRend.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            Player.GetComponent<GameRespawn>().enabled = false;
+            Player.GetComponent<Collider2D>().enabled = false;
+            StartCoroutine(gameOver(playerMovement));
+
         }
-        StartCoroutine(Invulnerability());
+        else StartCoroutine(Invulnerability());
     }
 
     public void HealPlayer(int healAmount)
@@ -97,10 +105,13 @@ public class GameManager : MonoBehaviour
         }
         isInvincible = false;
     }
-
-    public void gameOver()
+    
+    private IEnumerator gameOver(PlayerMovement pmove)
     {
+        pmove.DeathAnimation();
+        yield return new WaitForSeconds(1.5f);
         GameoverUI.SetActive(true);
+        Player.SetActive(false);
     }
 
     public void restart()

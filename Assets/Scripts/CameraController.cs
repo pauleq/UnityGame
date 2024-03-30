@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class CameraController : MonoBehaviour
 	[SerializeField] private Tilemap tilemap;
 
 	private float tileSize;
+	public bool followingPlayer = true;
 
 	private void Start()
 	{
@@ -17,14 +19,16 @@ public class CameraController : MonoBehaviour
 
 	private void LateUpdate()
 	{
+		if (followingPlayer)
+		{
+			transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
 
-		transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+			float minY = tilemap.transform.position.y;
+			float maxY = minY + tilemap.size.y * tileSize;
 
-		float minY = tilemap.transform.position.y;
-		float maxY = minY + tilemap.size.y * tileSize;
-
-		Vector3 currentPosition = transform.position;
-		currentPosition.y = Mathf.Clamp(currentPosition.y, minY, maxY);
-		transform.position = currentPosition;
+			Vector3 currentPosition = transform.position;
+			currentPosition.y = Mathf.Clamp(currentPosition.y, minY, maxY);
+			transform.position = currentPosition;
+		}
 	}
 }

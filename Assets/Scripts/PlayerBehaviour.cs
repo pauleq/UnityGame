@@ -10,7 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N)) 
         { 
-            PlayerTakeDamage();
+            PlayerTakeDamage(5);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -26,7 +26,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         if (GameManager.gameManager._playerHealth.Health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

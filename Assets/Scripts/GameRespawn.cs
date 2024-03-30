@@ -32,11 +32,14 @@ public class GameRespawn : MonoBehaviour
 			// out of the world bounds 
 			GameManager.gameManager.DamagePlayer(1);
 
-			// Respawn the player at the initial position
-			Vector2 respawnPosition = groundDetection.lastContactPosition;
-            respawnPosition.y = groundDetection.lastContactPosition.y + 1;
-            transform.position = respawnPosition;
-            Debug.Log("Player teleported to: " + groundDetection.lastContactPosition);
+            // Respawn the player at the initial position
+            if (GameManager.gameManager._playerHealth.Health > 0)
+            {
+                Vector2 respawnPosition = groundDetection.lastContactPosition;
+                respawnPosition.y = groundDetection.lastContactPosition.y + 1;
+                transform.position = respawnPosition;
+                Debug.Log("Player teleported to: " + groundDetection.lastContactPosition);
+            }
         }
     }
 }
