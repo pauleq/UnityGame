@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float knockbackForce = 15f; 
 	[SerializeField] private float knockbackDuration = 0.2f;
 
+    public bool lockMovement = false;
+
 
 	// Start is called before the first frame update
 	private void Start()
@@ -55,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        if (!isKnockedBack)
+        if (!isKnockedBack && !lockMovement)
         {
 
             dirX = Input.GetAxisRaw("Horizontal");
@@ -136,8 +138,6 @@ public class PlayerMovement : MonoBehaviour
     // Updates player's movement state
     private void updateMovementState()
     {
-        
-
         // Does the player run?
         if (dirX > 0f) // running to the right (->)
         {
@@ -184,6 +184,11 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 	}
+
+    public void DeathAnimation()
+    {
+        rb.velocity = new Vector2(0, jumpForce/2);
+    }
 
 	public void ResetDamaged()
     {
