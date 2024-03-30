@@ -10,11 +10,10 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager { get; private set; }
 
     // Parameters
-    [Header ("Health")]
+    [Header("Health")]
     public int startingHealth = 5;
     public int maxHealth = 5;
-    private bool isdead=false;
-
+    private bool isdead = false;
 
     [Header("iFrames")]
     public bool isInvincible = false;
@@ -29,27 +28,28 @@ public class GameManager : MonoBehaviour
     public GameObject GameoverUI;
     public UnitHealth _playerHealth = new UnitHealth(5, 5);
     public ExpPointCounter _playerExpPoints = new ExpPointCounter();
-
-    void Start()
-    {
-
-    }
+    public GameSaveData gameSaveData = new GameSaveData();
 
     void Awake()
     {
         if (gameManager != null && gameManager != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             gameManager = this;
         }
 
+        // Load game data on startup
+        GameSaveData gameSaveData = new GameSaveData();
+        gameSaveData = SaveSystem.LoadData();
+
         spriteRend = Player.GetComponent<SpriteRenderer>();
         _playerHealth.Health = startingHealth;
         _playerHealth.MaxHealth = maxHealth;
     }
+
 
     public void DamagePlayer(int damageAmount)
     {
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         {
             playerMovement.ResetDamaged();
         }
-        if (_playerHealth.Health <= 0 && !isdead) 
+        if (_playerHealth.Health <= 0 && !isdead)
         {
             isdead = true;
             PCamera.GetComponent<CameraController>().followingPlayer = false;
@@ -75,14 +75,17 @@ public class GameManager : MonoBehaviour
         }
         else StartCoroutine(Invulnerability());
     }
+
     public void HealPlayer(int healAmount)
     {
         _playerHealth.HealUnit(healAmount);
     }
+
     public void GiveExpPlayer(int expAmount)
     {
         _playerExpPoints.AddExpPoints(expAmount);
     }
+
     public void RemoveExpPlayer(int expAmount)
     {
         _playerExpPoints.RemoveExpPoints(expAmount);
@@ -93,7 +96,7 @@ public class GameManager : MonoBehaviour
         isInvincible = true;
         spriteRend.color = new Color(1, 0, 0, 1);
         yield return new WaitForSeconds(0.3f);
-        for (int i=0; i<numberOfFlashes; i++) 
+        for (int i = 0; i < numberOfFlashes; i++)
         {
             spriteRend.color = new Color(1, 1, 1, 0.5f);
             yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
@@ -102,6 +105,7 @@ public class GameManager : MonoBehaviour
         }
         isInvincible = false;
     }
+    
     private IEnumerator gameOver(PlayerMovement pmove)
     {
         pmove.DeathAnimation();
@@ -109,10 +113,12 @@ public class GameManager : MonoBehaviour
         GameoverUI.SetActive(true);
         Player.SetActive(false);
     }
+
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
