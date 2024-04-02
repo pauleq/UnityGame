@@ -10,6 +10,7 @@ public class DamagingObstacle : MonoBehaviour
 {
     public int damageAmount = 1; // Amount of damage touching the object will do
     public bool destroyOnHit = false; // Destroy object after hurting player once
+    public bool knockbackOnHit = true; // Knock the player back on touch
 
     // If isTrigger is false
     void OnCollisionStay2D(Collision2D collision)
@@ -29,6 +30,11 @@ public class DamagingObstacle : MonoBehaviour
         if (coll.CompareTag("Player") && !GameManager.gameManager.isInvincible)
         {
             GameManager.gameManager.DamagePlayer(damageAmount);
+
+            if (knockbackOnHit) 
+            {
+                coll.GetComponent<PlayerMovement>().Knockback(transform);
+            }
 
             if (destroyOnHit)
             {
