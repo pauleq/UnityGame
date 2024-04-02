@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask jumpableGround;
 
     // Parameters
+    [Header("Movement")]
     private float dirX = 0f;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 10f;
@@ -24,23 +26,26 @@ public class PlayerMovement : MonoBehaviour
     public float jumpTime;
     private bool isJumping;
 
-    private enum MovementState { idle, running, jumping, falling}
+    public bool lockMovement = false;
 
+    private enum MovementState { idle, running, jumping, falling }
+    private MovementState state;
+
+    [Header("Knockback")]
+    public bool isKnockedBack = false;
+    [SerializeField] private Transform _center;
+    [SerializeField] private float knockbackForce = 15f;
+    [SerializeField] private float knockbackDuration = 0.2f;
+
+    [Header("Sounds")]
     [SerializeField] private AudioSource jumpSoundEffect;
     [SerializeField] private AudioSource groundTouchSoundEffect;
 
+    [Header("Misc")]
     [SerializeField] private float normalTreshold = 0.9f;
 
     public bool canEnd = false;
 
-	private MovementState state;
-
-	private bool isKnockedBack = false;
-
-	[SerializeField] private float knockbackForce = 15f; 
-	[SerializeField] private float knockbackDuration = 0.2f;
-
-    public bool lockMovement = false;
 
 
 	// Start is called before the first frame update
@@ -57,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        if (!isKnockedBack && !lockMovement)
+        if (!lockMovement && !isKnockedBack)
         {
 
             dirX = Input.GetAxisRaw("Horizontal");
@@ -92,8 +97,12 @@ public class PlayerMovement : MonoBehaviour
 
             updateMovementState();
         }
-        
-        
+        else
+        {
+            //Knockback velocity slowing down
+            var lerpedXVelocity = Mathf.Lerp(rb.velocity.x, 0f, Time.deltaTime * 3);
+            rb.velocity = new Vector2(lerpedXVelocity, rb.velocity.y);
+        }
     }
 
     // Player lands on ground
@@ -123,13 +132,14 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 GameManager.gameManager.DamagePlayer(1);
+                Knockback(collision.transform);
 
-				Vector2 knockbackDirection = transform.position - collision.transform.position;
+				/*Vector2 knockbackDirection = transform.position - collision.transform.position;
 				knockbackDirection.Normalize();
 				rb.velocity = new Vector2(knockbackDirection.x * knockbackForce, rb.velocity.y);
 
-				isKnockedBack = true;
-				Invoke(nameof(ResetKnockback), knockbackDuration);
+				lockMovement = true;
+				Invoke(nameof(ResetKnockback), knockbackDuration);*/
 			}
 			
 		}
@@ -196,8 +206,17 @@ public class PlayerMovement : MonoBehaviour
         moveMod = 0f;
 	}
 
-	private void ResetKnockback()
-	{
-		isKnockedBack = false;
-	}
+    public void Knockback(Transform t)
+    {
+        var dir = _center.position - t.position;
+        isKnockedBack = true;
+        rb.velocity = dir.normalized * knockbackForce;
+        StartCoroutine(Unknockback());
+    }
+
+    private IEnumerator Unknockback()
+    {
+        yield return new WaitForSeconds(knockbackDuration);
+        isKnockedBack = false;
+    }
 }
