@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         else
         {
             gameManager = this;
+            DontDestroyOnLoad(gameManager);
         }
 
         // Load game data on startup
@@ -123,4 +124,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
 }
