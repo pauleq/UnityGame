@@ -10,17 +10,18 @@ public class StartMenu : MonoBehaviour
 
     private void Start()
     {
-        GameManager.gameManager.gameSaveData = SaveSystem.LoadData();
-        Debug.Log(GameManager.gameManager.gameSaveData.ToString());
+        GameSaveData gameSaveData = new GameSaveData();
 
-        for (int i = 0; GameManager.gameManager.gameSaveData.levelFinished[i] == true; i++, startLevel++) ;
+        if (SaveSystem.LoadData() != null)
+            gameSaveData = SaveSystem.LoadData();
 
-        Debug.Log("Player can continue from level " + startLevel);
+        for (int i = 0; gameSaveData.levelFinished[i] == true; i++, startLevel++) ;
 
         GameObject buttonObject = GameObject.Find("Button");
 
-        if (buttonObject != null)
+        if (buttonObject != null && gameSaveData.levelFinished[0] != false)
         {
+            Debug.Log("Player can continue from level " + startLevel);
             Button button = buttonObject.GetComponent<Button>();
 
             if (button != null)

@@ -42,15 +42,14 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameManager);
         }
 
-        // Load game data on startup
-        GameSaveData gameSaveData = new GameSaveData();
-        gameSaveData = SaveSystem.LoadData();
-
         spriteRend = Player.GetComponent<SpriteRenderer>();
         _playerHealth.Health = startingHealth;
         _playerHealth.MaxHealth = maxHealth;
-    }
 
+        gameSaveData = new GameSaveData();
+        if (SaveSystem.LoadData() != null)
+            gameSaveData = SaveSystem.LoadData();
+    }
 
     public void DamagePlayer(int damageAmount)
     {
