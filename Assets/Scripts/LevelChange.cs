@@ -9,13 +9,15 @@ public class LevelChange : MonoBehaviour
 {
     public Image Image;
     public bool canEnd = false;
+    public ExpPointCounter expCounter;
 
     [SerializeField] Animator transitionAnim;
 
     private void Start()
     {
         Image.enabled = false;
-    }
+		expCounter = GameManager.gameManager._playerExpPoints;
+	}
 
 	public void LevelEndPickedUp()
 	{
@@ -33,19 +35,23 @@ public class LevelChange : MonoBehaviour
 
 	}
 
-    private void CompleteLevel()
-    {
-        StartCoroutine(loadlevel());
-        GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex-1, GameManager.gameManager._playerExpPoints.ExpPoints);
-        SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
+	private void CompleteLevel()
+	{
+		StartCoroutine(loadlevel());
+		GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 1, GameManager.gameManager._playerExpPoints.ExpPoints);
+		SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
 
-    }
+		if (expCounter != null)
+		{
+			Debug.Log("This level earned stars: " + expCounter.CalculateStars(SceneManager.GetActiveScene().name));
+		}
+	}
 
-    IEnumerator loadlevel()
-    {
-        transitionAnim.SetTrigger("End");
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        transitionAnim.SetTrigger("Start");
-    }
+	IEnumerator loadlevel()
+	{
+		transitionAnim.SetTrigger("End");
+		yield return new WaitForSeconds(1);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		transitionAnim.SetTrigger("Start");
+	}
 }

@@ -9,8 +9,10 @@ public class ExpPointCounter
     // Fields
     int _currentExpPoints;
 
-    // Properties
-    public int ExpPoints
+	public Dictionary<string, int> totalStars = new Dictionary<string, int>(); // Track total stars per level
+
+	// Properties
+	public int ExpPoints
     {
         get
         {
@@ -52,4 +54,29 @@ public class ExpPointCounter
 
         UIManager.uiManager.updateExpPoints(); // Update exp points UI
     }
+
+
+	public int CalculateStars(string levelName)
+	{
+		// Define thresholds for stars
+		int[] starThresholds = { 1000, 5000, 10000 }; 
+        int expCollected = _currentExpPoints;
+		// Determine the number of stars based on exp collected
+		int stars = 0;
+		for (int i = 0; i < starThresholds.Length; i++)
+		{
+			if (expCollected >= starThresholds[i])
+			{
+				stars = i + 1;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+        totalStars.Add(levelName, stars);
+
+		return stars;
+	}
 }
