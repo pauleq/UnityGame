@@ -38,7 +38,7 @@ public class LevelChange : MonoBehaviour
 	private void CompleteLevel()
 	{
 		StartCoroutine(loadlevel());
-		GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 1, GameManager.gameManager._playerExpPoints.ExpPoints);
+		GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 1, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name));
 		SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
 
 		if (expCounter != null)

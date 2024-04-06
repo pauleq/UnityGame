@@ -24,10 +24,11 @@ public class GameSaveData
         }
     }
 
-    public void UpdateSave(int finishedLevel, int exp)
+    public void UpdateSave(int finishedLevel, int exp, int levelStars)
     {
         levelFinished[finishedLevel] = true;
         experience[finishedLevel] = exp;
+        stars[finishedLevel] = levelStars;
     }
 
     public override string ToString()
