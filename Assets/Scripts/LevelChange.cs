@@ -11,6 +11,7 @@ public class LevelChange : MonoBehaviour
     public bool canEnd = false;
     public ExpPointCounter expCounter;
 
+	public StarUI stars;
     [SerializeField] Animator transitionAnim;
 
     private void Start()
@@ -37,14 +38,22 @@ public class LevelChange : MonoBehaviour
 
 	private void CompleteLevel()
 	{
-		StartCoroutine(loadlevel());
-		GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 1, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name));
-		SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
 
-		if (expCounter != null)
+		if (SceneManager.GetActiveScene().name == "Level 1")
 		{
-			Debug.Log("This level earned stars: " + expCounter.CalculateStars(SceneManager.GetActiveScene().name));
+			int starsObtained = expCounter.CalculateStars(SceneManager.GetActiveScene().name);
+			PlayerPrefs.SetInt("StarsObtained", starsObtained);
+			SceneManager.LoadScene("End");
+			//StartCoroutine(endOfLevel());
 		}
+		else if (SceneManager.GetActiveScene().name != "Level 1")
+		{
+			StartCoroutine(loadlevel());
+			GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 1, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name));
+			SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
+		}
+		Debug.Log(SceneManager.GetActiveScene().name);
+
 	}
 
 	IEnumerator loadlevel()
@@ -54,4 +63,12 @@ public class LevelChange : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		transitionAnim.SetTrigger("Start");
 	}
+
+	//IEnumerator endOfLevel()
+	//{
+	//	Debug.Log("End Of Level Coroutine Started");
+	//	SceneManager.LoadScene("End");
+	//	yield return new WaitForSeconds(1);
+
+	//}
 }
