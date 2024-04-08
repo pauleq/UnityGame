@@ -45,7 +45,7 @@ public class LevelChange : MonoBehaviour
 			PlayerPrefs.SetInt("StarsObtained", starsObtained);
             GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 1, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name, true));
             SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
-            SceneManager.LoadScene("End");
+            SceneManager.LoadScene("EndStory");
 			//StartCoroutine(endOfLevel());
 		}
 		else if (SceneManager.GetActiveScene().name != "Level 1")
