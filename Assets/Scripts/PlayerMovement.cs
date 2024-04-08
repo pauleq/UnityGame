@@ -179,9 +179,16 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(collision.gameObject);
             if (collision.gameObject.name == "JumpBoost")
+            {
+                sprite.color = new Color(0.5f, 0.5f, 1f, 1f);
                 jumpMod = 5f;
-			else if (collision.gameObject.name == "SpeedBoost")
-				moveMod = 4f;
+            }
+            else if (collision.gameObject.name == "SpeedBoost")
+            {
+                moveMod = 4f;
+                sprite.color = new Color(1f, 0.92f, 0.016f, 1f);
+
+			}
             else if (collision.gameObject.name == "ExtraHeart")
                 GameManager.gameManager.HealPlayer(1);
 		}

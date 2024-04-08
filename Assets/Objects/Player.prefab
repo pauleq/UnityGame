@@ -215,7 +215,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -285,7 +285,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -310,8 +310,16 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 7
   jumpForce: 10
+  jumpTime: 0
+  lockMovement: 0
+  isKnockedBack: 0
+  _center: {fileID: 0}
+  knockbackForce: 15
+  knockbackDuration: 0.2
   jumpSoundEffect: {fileID: 162749764176407332}
   groundTouchSoundEffect: {fileID: 8505130602177034625}
+  normalTreshold: 0.9
+  canEnd: 0
 --- !u!95 &5596908409472711624
 Animator:
   serializedVersion: 5
