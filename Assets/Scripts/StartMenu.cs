@@ -31,7 +31,7 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + startLevel);
+        SceneManager.LoadScene("StartStory");
     }
 
     public void QuitGame()
