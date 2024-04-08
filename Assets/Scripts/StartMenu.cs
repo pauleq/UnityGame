@@ -8,7 +8,7 @@ public class StartMenu : MonoBehaviour
 {
     int startLevel = 1;
 
-    private void Start()
+    private void OnEnable()
     {
         GameSaveData gameSaveData = new GameSaveData();
 
