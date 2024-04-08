@@ -56,7 +56,7 @@ public class ExpPointCounter
     }
 
 
-	public int CalculateStars(string levelName)
+	public int CalculateStars(string levelName, bool noDict = false)
 	{
 		// Define thresholds for stars
 		int[] starThresholds = { 1000, 5000, 10000 }; 
@@ -74,8 +74,9 @@ public class ExpPointCounter
 				break;
 			}
 		}
-
-        totalStars.Add(levelName, stars);
+        
+        if (!noDict)
+            totalStars.Add(levelName, stars);
 
 		return stars;
 	}
