@@ -28,7 +28,7 @@ public class StartMenu : MonoBehaviour
             Button button = buttonObject.GetComponent<Button>();
 
             if (button != null)
-                button.GetComponentInChildren<Text>().text = "Continue from level " + startLevel.ToString();
+                button.GetComponentInChildren<Text>().text = "Continue from level " + (startLevel-1).ToString();
         }
     }
 
