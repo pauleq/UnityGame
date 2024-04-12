@@ -15,6 +15,9 @@ public class StartMenu : MonoBehaviour
         if (SaveSystem.LoadData() != null)
             gameSaveData = SaveSystem.LoadData();
 
+        if (gameSaveData.levelFinished[0] == true)
+            startLevel += 1; // skip start story
+
         for (int i = 0; gameSaveData.levelFinished[i] == true; i++, startLevel++) ;
 
         GameObject buttonObject = GameObject.Find("Button");
@@ -31,7 +34,7 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("StartStory");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + startLevel);
     }
 
     public void QuitGame()
