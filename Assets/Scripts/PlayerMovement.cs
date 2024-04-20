@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEditor;
+using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
     private Animator anim;
+    private Enemy enemy;
 
     [SerializeField] private LayerMask jumpableGround;
 
@@ -127,7 +130,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (state == MovementState.falling)
             {
-                Destroy(collision.gameObject);
+                collision.gameObject.transform.Rotate(new Vector3(0, 0, 180));
+                collision.gameObject.GetComponent<Collider2D>().enabled = false;
+                collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 11;
+                Destroy(collision.gameObject, 1f);
             }
             else
             {
