@@ -39,7 +39,7 @@ public class LevelChange : MonoBehaviour
 	private void CompleteLevel()
 	{
 
-		if (SceneManager.GetActiveScene().name == "Level 1")
+		if (SceneManager.GetActiveScene().name == "Level 4")
 		{
 			int starsObtained = expCounter.CalculateStars(SceneManager.GetActiveScene().name);
 			PlayerPrefs.SetInt("StarsObtained", starsObtained);
