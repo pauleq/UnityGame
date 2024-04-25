@@ -12,6 +12,7 @@ TagManager:
   - EndOfLevel
   - Enemy
   - Boundary
+  - Coin
   layers:
   - Default
   - TransparentFX

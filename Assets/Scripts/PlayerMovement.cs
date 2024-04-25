@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource jumpSoundEffect;
     [SerializeField] private AudioSource groundTouchSoundEffect;
     [SerializeField] private AudioSource collectRewardSoundEffect;
+    [SerializeField] private AudioSource coinCollectSoundEffect;
 
     [Header("Misc")]
     [SerializeField] private float normalTreshold = 0.9f;
@@ -209,6 +210,11 @@ public class PlayerMovement : MonoBehaviour
 			Destroy(collision.gameObject);
 			
 		}
+        if (collision.tag == "Coin")
+        {
+            if (!coinCollectSoundEffect.isPlaying)
+                coinCollectSoundEffect.Play();
+        }
 
 	}
 
