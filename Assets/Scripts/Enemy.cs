@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
     private float rightCap;
     private GameObject chatBubble;
     private TextMeshPro textMesh;
+    private bool isVisibleInCamera = false;
+
+    [SerializeField] private AudioSource enemyMessageSoundEffect;
 
     void Start()
     {
@@ -68,6 +71,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void OnBecameVisible()
+    {
+        isVisibleInCamera = true;
+    }
+
+    void OnBecameInvisible()
+    {
+        isVisibleInCamera = false;
+    }
+
     void Flip()
     {
         movingRight = !movingRight;
@@ -82,11 +95,13 @@ public class Enemy : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(intervalMinimum, intervalMaximum));
 
-            if (chatBubblePrefab != null && textPhrases.Count > 0)
+            if (chatBubblePrefab != null && textPhrases.Count > 0 && isVisibleInCamera)
             {
                 // Destroy previous chat bubble if exists
                 if (chatBubble != null)
                     Destroy(chatBubble);
+
+                enemyMessageSoundEffect.Play();
 
                 // Spawn new chat bubble
                 chatBubble = Instantiate(chatBubblePrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
