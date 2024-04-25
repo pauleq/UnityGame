@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource groundTouchSoundEffect;
     [SerializeField] private AudioSource collectRewardSoundEffect;
     [SerializeField] private AudioSource coinCollectSoundEffect;
+    [SerializeField] private AudioSource levelEndSoundEffect;
+    [SerializeField] private AudioSource lilyPadPickedSoundEffect;
 
     [Header("Misc")]
     [SerializeField] private float normalTreshold = 0.9f;
@@ -205,15 +207,19 @@ public class PlayerMovement : MonoBehaviour
 		}
         if(collision.tag == "LevelEnd")
         {
-			LevelChange levelChangeScript = FindObjectOfType<LevelChange>();
+            lilyPadPickedSoundEffect.Play();
+            LevelChange levelChangeScript = FindObjectOfType<LevelChange>();
 			levelChangeScript.LevelEndPickedUp();
 			Destroy(collision.gameObject);
-			
 		}
         if (collision.tag == "Coin")
         {
             if (!coinCollectSoundEffect.isPlaying)
                 coinCollectSoundEffect.Play();
+        }
+        if (collision.tag == "EndOfLevel")
+        {
+            levelEndSoundEffect.Play();
         }
 
 	}
