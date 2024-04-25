@@ -23,7 +23,7 @@ public class DamagingObstacle : MonoBehaviour
     {
         TouchConsequences(collider);
     }
-    
+
     // Decides what happens when object is touched
     void TouchConsequences(Collider2D coll)
     {
@@ -31,7 +31,7 @@ public class DamagingObstacle : MonoBehaviour
         {
             GameManager.gameManager.DamagePlayer(damageAmount);
 
-            if (knockbackOnHit) 
+            if (knockbackOnHit)
             {
                 coll.GetComponent<PlayerMovement>().Knockback(transform);
             }
@@ -41,6 +41,13 @@ public class DamagingObstacle : MonoBehaviour
                 Destroy(gameObject);
             }
 
-		}
-	}
+        }
+        if (coll.CompareTag("Terrain"))
+        {
+            if (destroyOnHit)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 }

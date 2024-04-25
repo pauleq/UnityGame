@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject rightBoundary;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private GameObject chatBubblePrefab;
+    private SpriteRenderer spriteRend;
     [SerializeField] private int intervalMinimum = 10;
     [SerializeField] private int intervalMaximum = 30;
     [SerializeField] private List<string> textPhrases;
