@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource jumpSoundEffect;
     [SerializeField] private AudioSource groundTouchSoundEffect;
+    [SerializeField] private AudioSource collectRewardSoundEffect;
 
     [Header("Misc")]
     [SerializeField] private float normalTreshold = 0.9f;
@@ -183,6 +184,8 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if(collision.tag == "Powerups")
         {
+            collectRewardSoundEffect.Play();
+
             Destroy(collision.gameObject);
             if (collision.gameObject.name == "JumpBoost")
             {
@@ -193,10 +196,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 moveMod = 4f;
                 sprite.color = new Color(1f, 0.92f, 0.016f, 1f);
-
-			}
+            }
             else if (collision.gameObject.name == "ExtraHeart")
+            {
                 GameManager.gameManager.HealPlayer(1);
+            }
 		}
         if(collision.tag == "LevelEnd")
         {
