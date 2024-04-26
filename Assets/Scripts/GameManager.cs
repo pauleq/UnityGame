@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject PCamera;
 
+    [SerializeField] private AudioSource damagePlayerSoundEffect;
+
     public GameObject GameoverUI;
     public UnitHealth _playerHealth = new UnitHealth(5, 5);
     public ExpPointCounter _playerExpPoints = new ExpPointCounter();
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
     public void DamagePlayer(int damageAmount)
     {
         if (isInvincible) return;
+        damagePlayerSoundEffect.Play();
         _playerHealth.DamageUnit(damageAmount);
         PlayerMovement playerMovement = Player.GetComponent<PlayerMovement>();
         if (playerMovement != null)
