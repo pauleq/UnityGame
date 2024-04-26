@@ -214,8 +214,7 @@ public class PlayerMovement : MonoBehaviour
 		}
         if (collision.tag == "Coin")
         {
-            if (!coinCollectSoundEffect.isPlaying)
-                coinCollectSoundEffect.Play();
+            coinCollectSoundEffect.Play();
         }
         if (collision.tag == "EndOfLevel")
         {
