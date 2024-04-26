@@ -1932,6 +1932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1095242806}
   tilemap: {fileID: 1867232086}
+  outOfBondsEffect: {fileID: 1508467009}
   followingPlayer: 1
 --- !u!81 &345883916
 AudioListener:
@@ -2004,7 +2005,8 @@ Transform:
   m_LocalPosition: {x: -23.47, y: 1.26, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1508467010}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &349296946 stripped
@@ -3397,6 +3399,7 @@ MonoBehaviour:
   - Hello!
   - Hello world!
   - Testing, testing, testing
+  enemyMessageSoundEffect: {fileID: 1231034169}
 --- !u!61 &659553942
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5364,6 +5367,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5009340842085226139, guid: 5d4433c0fc2e4bc4694124457edaaa5b, type: 3}
   m_PrefabInstance: {fileID: 919145948}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &923705755 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5553356639943247986, guid: 5df2a7a3a781dfd489824b8b929caa1a, type: 3}
+  m_PrefabInstance: {fileID: 1391213592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &930560833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1656299715845714612, guid: 25bc98aa783b076419465811618c969c, type: 3}
@@ -7072,6 +7080,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5009340842085226139, guid: 5d4433c0fc2e4bc4694124457edaaa5b, type: 3}
   m_PrefabInstance: {fileID: 1376728280}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1231034169 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6448385626713480248, guid: 5df2a7a3a781dfd489824b8b929caa1a, type: 3}
+  m_PrefabInstance: {fileID: 1391213592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1232123134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5009340842085226139, guid: 5d4433c0fc2e4bc4694124457edaaa5b, type: 3}
@@ -8229,6 +8242,7 @@ MonoBehaviour:
   - Hello!
   - Hello world!
   - Testing, testing, testing
+  enemyMessageSoundEffect: {fileID: 1231034169}
 --- !u!61 &1360119806
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19030,6 +19044,134 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5009340842085226139, guid: 5d4433c0fc2e4bc4694124457edaaa5b, type: 3}
   m_PrefabInstance: {fileID: 1741562319}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1508467008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1508467010}
+  - component: {fileID: 1508467009}
+  m_Layer: 0
+  m_Name: outOfBonds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1508467009
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508467008}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a0010a1a0c474473b81729eb770c485f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1508467010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508467008}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 345883918}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1531929858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5009340842085226139, guid: 5d4433c0fc2e4bc4694124457edaaa5b, type: 3}
@@ -19743,6 +19885,7 @@ MonoBehaviour:
   - Hello!
   - Hello world!
   - Testing, testing, testing
+  enemyMessageSoundEffect: {fileID: 1231034169}
 --- !u!61 &1621152591
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19934,6 +20077,7 @@ MonoBehaviour:
   numberOfFlashes: 5
   Player: {fileID: 1095242804}
   PCamera: {fileID: 345883914}
+  damagePlayerSoundEffect: {fileID: 923705755}
   GameoverUI: {fileID: 1675023182}
   gameSaveData:
     levelFinished: 0000000000
@@ -26770,6 +26914,7 @@ MonoBehaviour:
   - Hello!
   - Hello world!
   - Testing, testing, testing
+  enemyMessageSoundEffect: {fileID: 1231034169}
 --- !u!61 &2080696117
 BoxCollider2D:
   m_ObjectHideFlags: 0
