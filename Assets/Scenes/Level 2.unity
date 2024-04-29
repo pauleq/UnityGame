@@ -2737,9 +2737,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Amphibian, meet oblivion!
+  - You're just a frog!
+  - I'll flatten you, frog!
   enemyMessageSoundEffect: {fileID: 1095210872}
 --- !u!61 &659553942
 BoxCollider2D:
@@ -6585,10 +6585,10 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
-  enemyMessageSoundEffect: {fileID: 0}
+  - Leap into oblivion!
+  - Frog, meet your end
+  - You're no match, amphibian!
+  enemyMessageSoundEffect: {fileID: 1095210872}
 --- !u!61 &1360119806
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6839,11 +6839,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7902274960200316524, guid: 5df2a7a3a781dfd489824b8b929caa1a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -56.97
+      value: -55.7
       objectReference: {fileID: 0}
     - target: {fileID: 7902274960200316524, guid: 5df2a7a3a781dfd489824b8b929caa1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7902274960200316524, guid: 5df2a7a3a781dfd489824b8b929caa1a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -27384,9 +27384,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Your lily pad is doomed!
+  - Frog, prepare to fall!
+  - I'll crush your leap!
   enemyMessageSoundEffect: {fileID: 1095210872}
 --- !u!61 &1621152591
 BoxCollider2D:
@@ -32688,9 +32688,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Frog, face your doom!
+  - Hop away, coward!
+  - Surrender, amphibian!
   enemyMessageSoundEffect: {fileID: 1095210872}
 --- !u!61 &2080696117
 BoxCollider2D:

@@ -876,9 +876,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Frog, you're out!
+  - Ribbit your regrets!
+  - Frog, you're done!
   enemyMessageSoundEffect: {fileID: 903561310}
 --- !u!61 &89956022
 BoxCollider2D:
@@ -35196,9 +35196,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - No escape, little one!
+  - Croak your last, frog!
+  - Frog, you're mine!
   enemyMessageSoundEffect: {fileID: 903561310}
 --- !u!61 &339660364
 BoxCollider2D:
@@ -73311,9 +73311,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Hop back to obscurity!
+  - Frog, I'll end you!
+  - I'll drain your spirit!
   enemyMessageSoundEffect: {fileID: 903561310}
 --- !u!61 &951019118
 BoxCollider2D:
@@ -75378,9 +75378,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Halt, little froggy!
+  - Turn back, little frog!
+  - Frog, face your fate!
   enemyMessageSoundEffect: {fileID: 903561310}
 --- !u!61 &1155071528
 BoxCollider2D:
@@ -75881,6 +75881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d212b98086e6be849935d040fe579507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallup: 0
   anim: {fileID: 1197853714}
   rb: {fileID: 1197853717}
 --- !u!251 &1197853716
@@ -76486,9 +76487,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Frog, meet your end!
+  - Frog, you're weak!
+  - Frog, face oblivion!
   enemyMessageSoundEffect: {fileID: 903561310}
 --- !u!61 &1238157054
 BoxCollider2D:
@@ -77935,9 +77936,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - No mercy, little frog!
+  - Croak in terror, frog!
+  - Leap no further, frog!
   enemyMessageSoundEffect: {fileID: 903561310}
 --- !u!61 &1424824025
 BoxCollider2D:

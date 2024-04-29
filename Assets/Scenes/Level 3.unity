@@ -3396,9 +3396,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - I'll drain your spirit!
+  - No mercy for frogs!
+  - Froggy, I'll crush you!
   enemyMessageSoundEffect: {fileID: 1231034169}
 --- !u!61 &659553942
 BoxCollider2D:
@@ -4387,6 +4387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d212b98086e6be849935d040fe579507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallup: 0
   anim: {fileID: 792412547}
   rb: {fileID: 792412550}
 --- !u!251 &792412549
@@ -5078,6 +5079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d212b98086e6be849935d040fe579507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallup: 0
   anim: {fileID: 884959800}
   rb: {fileID: 884959803}
 --- !u!251 &884959802
@@ -8239,9 +8241,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Hop away or suffer!
+  - Prepare for frogocide!
+  - You're no hero, frog!
   enemyMessageSoundEffect: {fileID: 1231034169}
 --- !u!61 &1360119806
 BoxCollider2D:
@@ -19537,6 +19539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d212b98086e6be849935d040fe579507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallup: 0
   anim: {fileID: 1593405834}
   rb: {fileID: 1593405837}
 --- !u!251 &1593405836
@@ -19882,9 +19885,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Croak your final words!
+  - You're just a swamp snack!
+  - You're no match, frog!
   enemyMessageSoundEffect: {fileID: 1231034169}
 --- !u!61 &1621152591
 BoxCollider2D:
@@ -20334,6 +20337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d212b98086e6be849935d040fe579507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallup: 0
   anim: {fileID: 1680259710}
   rb: {fileID: 1680259713}
 --- !u!251 &1680259712
@@ -26911,9 +26915,9 @@ MonoBehaviour:
   intervalMinimum: 10
   intervalMaximum: 30
   textPhrases:
-  - Hello!
-  - Hello world!
-  - Testing, testing, testing
+  - Frog, you're doomed!
+  - Tremble, little hopper!
+  - Frog, you're finished!
   enemyMessageSoundEffect: {fileID: 1231034169}
 --- !u!61 &2080696117
 BoxCollider2D:
