@@ -1130,6 +1130,8 @@ MonoBehaviour:
   lilyPadPickedSoundEffect: {fileID: 8974397086471681239}
   normalTreshold: 0.9
   canEnd: 0
+  jumpBoostMaterial: {fileID: 2100000, guid: 5730c17b197dcae4d9c18a29bbdc7b48, type: 2}
+  speedBoostMaterial: {fileID: 2100000, guid: dad37c593f693e2499b9cc88fff6f4ca, type: 2}
 --- !u!95 &5596908409472711624
 Animator:
   serializedVersion: 5

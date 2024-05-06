@@ -53,7 +53,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canEnd = false;
 
-
+    public Material jumpBoostMaterial;
+	public Material speedBoostMaterial;
+	private Material originalMaterial;
 
 	// Start is called before the first frame update
 	private void Start()
@@ -62,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
+		originalMaterial = sprite.material;
 	}
 
     // Update is called once per frame
@@ -192,14 +194,14 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
             if (collision.gameObject.name == "JumpBoost")
             {
-                sprite.color = new Color(0.5f, 0.5f, 1f, 1f);
+                sprite.material = jumpBoostMaterial;
                 jumpMod = 5f;
             }
             else if (collision.gameObject.name == "SpeedBoost")
             {
                 moveMod = 4f;
-                sprite.color = new Color(1f, 0.92f, 0.016f, 1f);
-            }
+                sprite.material = speedBoostMaterial;
+			}
             else if (collision.gameObject.name == "ExtraHeart")
             {
                 GameManager.gameManager.HealPlayer(1);
@@ -232,6 +234,7 @@ public class PlayerMovement : MonoBehaviour
     {
         jumpMod = 0f;
         moveMod = 0f;
+		sprite.material = originalMaterial;
 	}
 
     public void Knockback(Transform t)
