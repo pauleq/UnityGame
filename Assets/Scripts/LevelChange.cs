@@ -67,11 +67,13 @@ public class LevelChange : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == "Level 5")
 		{
 			int starsObtained = expCounter.CalculateStars(SceneManager.GetActiveScene().name, expCollected);
-			PlayerPrefs.SetInt("StarsObtained", starsObtained);
+			int currentStars = PlayerPrefs.GetInt("StarsObtained", 0);
+
+	
+			PlayerPrefs.SetInt("StarsObtained", starsObtained + currentStars);
             GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 2, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name, expCollected, true));
             SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
             SceneManager.LoadScene("EndStory");
-			Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + PlayerPrefs.GetInt("StarsObtained", 0));
 			//StartCoroutine(endOfLevel());
 		}
 		else 

@@ -1,5 +1,6 @@
 // Singleton
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     public UnitHealth _playerHealth = new UnitHealth(5, 5);
     public ExpPointCounter _playerExpPoints = new ExpPointCounter();
     public GameSaveData gameSaveData = new GameSaveData();
+
 
     void Awake()
     {
@@ -125,6 +127,24 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
-    }
+	}
+
+  
+
+	public int[] Stars
+	{
+		get { return gameSaveData.stars; }
+	}
+
+	// Example method to access stars from outside the GameManager
+	public int GetTotalStars()
+	{
+		int totalStars = 0;
+		foreach (int stars in gameSaveData.stars)
+		{
+			totalStars += stars;
+		}
+		return totalStars;
+	}
 
 }

@@ -10,6 +10,7 @@ public class GameSaveData
     public int[] experience;
     public int[] stars;
 
+
     public GameSaveData()
     {
         levelFinished = new bool[5];
