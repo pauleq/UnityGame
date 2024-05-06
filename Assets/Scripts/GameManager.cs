@@ -136,7 +136,6 @@ public class GameManager : MonoBehaviour
 		get { return gameSaveData.stars; }
 	}
 
-	// Example method to access stars from outside the GameManager
 	public int GetTotalStars()
 	{
 		int totalStars = 0;
@@ -148,3 +147,4 @@ public class GameManager : MonoBehaviour
 	}
 
 }
+
