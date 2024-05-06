@@ -128,23 +128,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
 	}
-
-  
-
-	public int[] Stars
-	{
-		get { return gameSaveData.stars; }
-	}
-
-	public int GetTotalStars()
-	{
-		int totalStars = 0;
-		foreach (int stars in gameSaveData.stars)
-		{
-			totalStars += stars;
-		}
-		return totalStars;
-	}
-
 }
 
