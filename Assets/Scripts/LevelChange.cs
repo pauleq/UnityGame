@@ -39,7 +39,7 @@ public class LevelChange : MonoBehaviour
 	private void CompleteLevel()
 	{
 
-		if (SceneManager.GetActiveScene().name == "Level 4")
+		if (SceneManager.GetActiveScene().name == "Level 5")
 		{
 			int starsObtained = expCounter.CalculateStars(SceneManager.GetActiveScene().name);
 			PlayerPrefs.SetInt("StarsObtained", starsObtained);
@@ -51,7 +51,7 @@ public class LevelChange : MonoBehaviour
 		else 
 		{
 			StartCoroutine(loadlevel());
-			GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 1, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name));
+			GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 2, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name));
 			SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
 		}
 		Debug.Log(SceneManager.GetActiveScene().name);
