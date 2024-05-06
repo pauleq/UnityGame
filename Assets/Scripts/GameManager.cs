@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         else
         {
             gameManager = this;
-            DontDestroyOnLoad(gameManager);
+            //DontDestroyOnLoad(gameManager);
         }
 
         spriteRend = Player.GetComponent<SpriteRenderer>();

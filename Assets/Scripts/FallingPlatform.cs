@@ -7,6 +7,9 @@ public class FallingPlatform : MonoBehaviour
     private float fallDelay = 1f;
     private float destroyDelay = 2f;
     public bool fallup=false;
+    private bool falling = false;
+    public AudioSource audioObject;
+    public AudioClip FallClip;
 
     [SerializeField] Animator anim;
     [SerializeField] private Rigidbody2D rb;
@@ -15,18 +18,26 @@ public class FallingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(Fall());
+            if (!falling)
+            {
+                falling = true;
+                StartCoroutine(Fall());
+            }
         }
     }
 
     private IEnumerator Fall()
     {
+        audioObject.Play();
         anim.SetTrigger("Start");
         yield return new WaitForSeconds(1);
+        audioObject.Stop();
         anim.SetTrigger("End");
         yield return new WaitForSeconds(fallDelay);
         rb.bodyType = RigidbodyType2D.Dynamic;
         if (fallup) rb.gravityScale = -1;
+        audioObject.clip = FallClip;
+        audioObject.Play();
         rb.mass = 4f;
         Destroy(gameObject, destroyDelay);
     }
