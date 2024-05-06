@@ -18,7 +18,10 @@ public class StartMenu : MonoBehaviour
         if (gameSaveData.levelFinished[0] == true)
             startLevel += 1; // skip start story
 
-        for (int i = 0; gameSaveData.levelFinished[i] == true; i++, startLevel++) ;
+        for (int i = 0; gameSaveData.levelFinished[i] == true && i != 4; i++, startLevel++);
+
+        if (gameSaveData.levelFinished[4] == true)
+            startLevel = 8;
 
         GameObject buttonObject = GameObject.Find("Button");
 
@@ -27,8 +30,10 @@ public class StartMenu : MonoBehaviour
             Debug.Log("Player can continue from level " + startLevel);
             Button button = buttonObject.GetComponent<Button>();
 
-            if (button != null)
-                button.GetComponentInChildren<Text>().text = "Continue from level " + (startLevel-1).ToString();
+            if (button != null && gameSaveData.levelFinished[4] != true)
+                button.GetComponentInChildren<Text>().text = "Continue from level " + (startLevel - 1).ToString();
+            else if (button != null && gameSaveData.levelFinished[4] == true)
+                button.GetComponentInChildren<Text>().text = "Check your statistics";
         }
     }
 
