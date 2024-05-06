@@ -56,10 +56,10 @@ public class ExpPointCounter
     }
 
 
-	public int CalculateStars(string levelName, bool noDict = false)
+	public int CalculateStars(string levelName, int totalExp, bool noDict = false)
 	{
-		// Define thresholds for stars
-		int[] starThresholds = { 1000, 5000, 10000 }; 
+        // Define thresholds for stars
+        int[] starThresholds = CalculateStarThresholds(totalExp);
         int expCollected = _currentExpPoints;
 		// Determine the number of stars based on exp collected
 		int stars = 0;
@@ -79,5 +79,16 @@ public class ExpPointCounter
             totalStars.Add(levelName, stars);
 
 		return stars;
+	}
+
+	private int[] CalculateStarThresholds(int totalExp)
+	{
+		int[] starThresholds = new int[3];
+		int threshold = totalExp / 3;
+		for (int i = 0; i < 3; i++)
+		{
+			starThresholds[i] = threshold * (i + 1);
+		}
+		return starThresholds;
 	}
 }

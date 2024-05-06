@@ -39,19 +39,47 @@ public class LevelChange : MonoBehaviour
 	private void CompleteLevel()
 	{
 
-		if (SceneManager.GetActiveScene().name == "Level 4")
+		int expCollected = 0;
+		string levelName = SceneManager.GetActiveScene().name;
+		switch (levelName)
 		{
-			int starsObtained = expCounter.CalculateStars(SceneManager.GetActiveScene().name);
+			case "Level 1":
+				expCollected = 25000;
+				break;
+			case "Level 2":
+				expCollected = 15150;
+				break;
+			case "Level 3":
+				expCollected = 17050;
+				break;
+			case "Level 4":
+				expCollected = 33500;
+				break;
+			case "Level 5":
+				expCollected = 32200;
+				break;
+			default:
+				Debug.LogError("Invalid level name: " + levelName);
+				break;
+		}
+
+
+		if (SceneManager.GetActiveScene().name == "Level 5")
+		{
+			int starsObtained = expCounter.CalculateStars(SceneManager.GetActiveScene().name, expCollected);
 			PlayerPrefs.SetInt("StarsObtained", starsObtained);
-            GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 2, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name, true));
+            GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 2, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name, expCollected, true));
             SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
             SceneManager.LoadScene("EndStory");
+			Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + PlayerPrefs.GetInt("StarsObtained", 0));
 			//StartCoroutine(endOfLevel());
 		}
 		else 
 		{
+			int starsObtained = expCounter.CalculateStars(SceneManager.GetActiveScene().name, expCollected);
+			PlayerPrefs.SetInt("StarsObtained", starsObtained);
 			StartCoroutine(loadlevel());
-			GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 1, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name));
+			GameManager.gameManager.gameSaveData.UpdateSave(SceneManager.GetActiveScene().buildIndex - 1, GameManager.gameManager._playerExpPoints.ExpPoints, expCounter.CalculateStars(SceneManager.GetActiveScene().name, expCollected));
 			SaveSystem.SaveData(GameManager.gameManager.gameSaveData);
 		}
 		Debug.Log(SceneManager.GetActiveScene().name);

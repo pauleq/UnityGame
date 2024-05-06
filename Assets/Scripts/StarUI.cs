@@ -14,6 +14,6 @@ public class StarUI : MonoBehaviour
 		Debug.Log("Start method called in EndSceneScript");
 		int starsObtained = PlayerPrefs.GetInt("StarsObtained", 0);
 		Debug.Log("Stars obtained: " + starsObtained);
-		starCountText.text = string.Format("{0} / 3 stars obtained!", starsObtained);
+		starCountText.text = string.Format("{0} / 15 stars obtained!", starsObtained);
 	}
 }
