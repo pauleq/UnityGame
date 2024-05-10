@@ -9,6 +9,10 @@ public class cannonscript : MonoBehaviour
     float timebetween;
     public float starttimebetween;
 
+    [SerializeField] private AudioSource bulletLaunchSoundEffect;
+    public Transform player;
+    [SerializeField] private float proximityDistance = 25f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,11 @@ public class cannonscript : MonoBehaviour
         if (timebetween <= 0)
         {
             Instantiate(bullet, firepoint.position, firepoint.rotation);
+
+            if (player != null)
+                if (Vector3.Distance(transform.position, player.position) < proximityDistance)
+                    bulletLaunchSoundEffect.Play();
+
             timebetween = starttimebetween;
         }
         else
