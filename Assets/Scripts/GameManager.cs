@@ -27,8 +27,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject PCamera;
 
     [SerializeField] private AudioSource damagePlayerSoundEffect;
+	[SerializeField] private AudioSource Backgroundmusic;
+	[SerializeField] private AudioSource gameoverMusic;
 
-    public GameObject GameoverUI;
+	public GameObject GameoverUI;
     public UnitHealth _playerHealth = new UnitHealth(5, 5);
     public ExpPointCounter _playerExpPoints = new ExpPointCounter();
     public GameSaveData gameSaveData = new GameSaveData();
@@ -113,8 +115,13 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator gameOver(PlayerMovement pmove)
     {
+        if(Backgroundmusic.isPlaying)
+        {
+            Backgroundmusic.Pause();
+        }
         pmove.DeathAnimation();
         yield return new WaitForSeconds(1.5f);
+        gameoverMusic.Play();
         GameoverUI.SetActive(true);
         Player.SetActive(false);
     }
