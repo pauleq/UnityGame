@@ -14,7 +14,6 @@ public static class SaveSystem
             Debug.Log("Saving game: " + data.ToString());
 
             BinaryFormatter formatter = new BinaryFormatter();
-            string path = Application.persistentDataPath + "/GameSave";
             FileStream stream = new FileStream(path, FileMode.Create);
 
             formatter.Serialize(stream, data);
@@ -49,5 +48,11 @@ public static class SaveSystem
                 return null;
             }
         }
+    }
+
+    public static void DeleteData()
+    {
+        if (File.Exists(path))
+            File.Delete(path);
     }
 }

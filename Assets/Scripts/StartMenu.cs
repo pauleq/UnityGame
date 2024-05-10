@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
     int startLevel = 1;
+    [SerializeField] GameObject restartButton;
 
     private void OnEnable()
     {
@@ -21,9 +22,14 @@ public class StartMenu : MonoBehaviour
         for (int i = 0; gameSaveData.levelFinished[i] == true && i != 4; i++, startLevel++);
 
         if (gameSaveData.levelFinished[4] == true)
+        {
             startLevel = 8;
 
-        GameObject buttonObject = GameObject.Find("Button");
+            if (restartButton != null)
+                restartButton.SetActive(true);
+        }
+
+        GameObject buttonObject = GameObject.Find("Start");
 
         if (buttonObject != null && gameSaveData.levelFinished[0] != false)
         {
@@ -45,5 +51,11 @@ public class StartMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void RestartGame()
+    {
+        SaveSystem.DeleteData();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
