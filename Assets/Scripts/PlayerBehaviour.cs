@@ -28,7 +28,19 @@ public class PlayerBehaviour : MonoBehaviour
         {
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
+        //Some debug level changing for easier testing for later levels
+
+        //Move up a Level
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		}
+        //Move down a level
+		if (Input.GetKeyDown(KeyCode.O))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+		}
+	}
 
     private void PlayerTakeDamage(int damage = 1)
     {
