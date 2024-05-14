@@ -10,7 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N)) 
         { 
-            PlayerTakeDamage(1);
+            PlayerTakeDamage(5);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
